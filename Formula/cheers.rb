@@ -1,8 +1,8 @@
 class Cheers < Formula
   desc "Delightful macOS notification tool"
   homepage "https://github.com/xorvo/cheers"
-  url "https://github.com/xorvo/cheers/archive/refs/tags/v1.0.1.tar.gz"
-  sha256 "73c6a91bc268e724ac5e49b59b2efa2da3e104cfe9192a0ea563ba3d833c8add"
+  url "https://github.com/xorvo/cheers/archive/refs/tags/v1.0.2.tar.gz"
+  sha256 "2c20666e4b8bdb0c234953221f316a089c43a52d2e78659b50c4b58995064869"
   license "MIT"
 
   depends_on :macos => :mojave
