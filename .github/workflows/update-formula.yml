@@ -1,0 +1,44 @@
+name: Update Formula
+
+on:
+  repository_dispatch:
+    types: [update-formula]
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout tap
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Update formula
+      run: |
+        FORMULA_FILE="Formula/${{ github.event.client_payload.formula }}.rb"
+        VERSION="${{ github.event.client_payload.version }}"
+        SHA256="${{ github.event.client_payload.sha256 }}"
+        
+        echo "Updating $FORMULA_FILE to version $VERSION"
+        
+        # Update URL
+        sed -i "s|url \".*\"|url \"https://github.com/xorvo/cheers/archive/refs/tags/v${VERSION}.tar.gz\"|" "$FORMULA_FILE"
+        
+        # Update SHA256
+        sed -i "s|sha256 \".*\"|sha256 \"${SHA256}\"|" "$FORMULA_FILE"
+        
+        echo "Formula updated successfully"
+        cat "$FORMULA_FILE" | grep -E "(url|sha256)"
+    
+    - name: Commit and push
+      run: |
+        VERSION="${{ github.event.client_payload.version }}"
+        FORMULA="${{ github.event.client_payload.formula }}"
+        
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        
+        git add Formula/${FORMULA}.rb
+        git commit -m "Update ${FORMULA} to v${VERSION}" || echo "No changes to commit"
+        git push
