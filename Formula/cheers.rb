@@ -60,8 +60,22 @@ class Cheers < Formula
     # Code sign the app bundle
     system "codesign", "-s", "-", "--force", "--deep", app_bundle
     
-    # Create symlink in bin
-    bin.install_symlink app_bundle/"Contents/MacOS/cheers"
+    # Install smart wrapper that handles help/errors in terminal and notifications via app bundle
+    (bin/"cheers").write <<~EOS
+      #!/bin/bash
+      # Smart wrapper for cheers
+      
+      # Check if requesting help or no arguments (which shows help)
+      if [ $# -eq 0 ] || [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]]; then
+          # Run directly for terminal output
+          exec "#{app_bundle}/Contents/MacOS/cheers" "$@"
+      fi
+      
+      # For notifications, use open to ensure proper app bundle context
+      # The -W flag makes open wait for the app to finish, but we use -n for new instance
+      exec open -n "#{app_bundle}" --args "$@"
+    EOS
+    (bin/"cheers").chmod(0755)
   end
 
   test do
