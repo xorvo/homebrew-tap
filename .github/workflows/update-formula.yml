@@ -4,6 +4,9 @@ on:
   repository_dispatch:
     types: [update-formula]
 
+permissions:
+  contents: write
+
 jobs:
   update:
     runs-on: ubuntu-latest
@@ -11,8 +14,6 @@ jobs:
     steps:
     - name: Checkout tap
       uses: actions/checkout@v4
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
     
     - name: Update formula
       run: |
