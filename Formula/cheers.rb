@@ -60,13 +60,8 @@ class Cheers < Formula
     # Code sign the app bundle
     system "codesign", "-s", "-", "--force", "--deep", app_bundle
     
-    # Install launcher script instead of direct symlink
-    # This ensures we always run through the app bundle for proper notification handling
-    (bin/"cheers").write <<~EOS
-      #!/bin/sh
-      exec open -n "#{app_bundle}" --args "$@"
-    EOS
-    (bin/"cheers").chmod(0755)
+    # Create symlink in bin
+    bin.install_symlink app_bundle/"Contents/MacOS/cheers"
   end
 
   test do
