@@ -21,19 +21,36 @@ class Cheers < Formula
     cp "cheers", app_bundle/"Contents/MacOS/cheers"
     
     # Create Info.plist
-    (app_bundle/"Contents").install_plist({
-      "CFBundleExecutable" => "cheers",
-      "CFBundleIdentifier" => "com.xorvo.cheers",
-      "CFBundleName" => "cheers",
-      "CFBundleDisplayName" => "Cheers",
-      "CFBundlePackageType" => "APPL",
-      "CFBundleShortVersionString" => version.to_s,
-      "CFBundleVersion" => "1",
-      "LSMinimumSystemVersion" => "10.14",
-      "CFBundleIconFile" => "Cheers",
-      "LSUIElement" => true,
-      "NSUserNotificationAlertStyle" => "alert"
-    })
+    (app_bundle/"Contents/Info.plist").write <<~EOS
+      <?xml version="1.0" encoding="UTF-8"?>
+      <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+      <plist version="1.0">
+      <dict>
+        <key>CFBundleExecutable</key>
+        <string>cheers</string>
+        <key>CFBundleIdentifier</key>
+        <string>com.xorvo.cheers</string>
+        <key>CFBundleName</key>
+        <string>cheers</string>
+        <key>CFBundleDisplayName</key>
+        <string>Cheers</string>
+        <key>CFBundlePackageType</key>
+        <string>APPL</string>
+        <key>CFBundleShortVersionString</key>
+        <string>#{version}</string>
+        <key>CFBundleVersion</key>
+        <string>1</string>
+        <key>LSMinimumSystemVersion</key>
+        <string>10.14</string>
+        <key>CFBundleIconFile</key>
+        <string>Cheers</string>
+        <key>LSUIElement</key>
+        <true/>
+        <key>NSUserNotificationAlertStyle</key>
+        <string>alert</string>
+      </dict>
+      </plist>
+    EOS
     
     # Copy icon if available
     if File.exist?("Cheers.icns")
