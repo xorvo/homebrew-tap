@@ -1,17 +1,17 @@
 class Aw < Formula
   desc "Isolated workspaces for AI agents, with a tmux-based live dashboard"
   homepage "https://github.com/xorvo/aw"
-  version "1.2.1"
+  version "1.2.2"
   license "MIT"
 
   on_macos do
     on_arm do
-      url "https://github.com/xorvo/aw/releases/download/v1.2.1/aw-v1.2.1-aarch64-apple-darwin.tar.gz"
-      sha256 "f02dbbb2fba5830a6053cda96506e73f490fc1492e471aee5742a06d8c076268"
+      url "https://github.com/xorvo/aw/releases/download/v1.2.2/aw-v1.2.2-aarch64-apple-darwin.tar.gz"
+      sha256 "a1444693e26281c2b3610506766022e5cfad30be3b37093aff3a1ccfa75b76cb"
     end
     on_intel do
-      url "https://github.com/xorvo/aw/releases/download/v1.2.1/aw-v1.2.1-x86_64-apple-darwin.tar.gz"
-      sha256 "dbb04df9c145bbc31f5f4dcad6019b6c0bdd81979a777f3f35eb70983f75f174"
+      url "https://github.com/xorvo/aw/releases/download/v1.2.2/aw-v1.2.2-x86_64-apple-darwin.tar.gz"
+      sha256 "873323477bebea4aeacd375b3b3a8d0bd10c795afe47efd643d57079253411a0"
     end
   end
 
