@@ -1,8 +1,8 @@
 class Bagw < Formula
   desc "Browser Agent Gateway — run local AI agents from browser extensions"
   homepage "https://github.com/xorvo/bagw"
-  url "https://github.com/xorvo/bagw/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "48c85e907f927cade85763710bd2e2c3a645b11229f7598c04aa41dc366c6892"
+  url "https://github.com/xorvo/bagw/archive/refs/tags/v0.1.1.tar.gz"
+  sha256 "dbe9642889f00739b79dd0bf02cb0741b00845c230d4358b2497ce7fc9036c78"
   license "MIT"
 
   depends_on "node"
@@ -21,6 +21,8 @@ class Bagw < Formula
     keep_alive true
     log_path var/"log/bagw.log"
     error_log_path var/"log/bagw.log"
+    # Baseline PATH backup; bagw also loads the user's login-shell PATH at startup.
+    environment_variables PATH: "#{Dir.home}/.local/bin:#{HOMEBREW_PREFIX}/bin:/usr/local/bin:/usr/bin:/bin"
   end
 
   def caveats
@@ -30,6 +32,7 @@ class Bagw < Formula
 
       Then connect a browser extension; bagw will prompt you to approve it.
       Manage access:  bagw clients | bagw approve <code> | bagw revoke <name>
+      Troubleshoot agent discovery:  bagw doctor
     EOS
   end
 
