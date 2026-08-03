@@ -5,8 +5,6 @@ class Cheers < Formula
   sha256 "7e6c6dbb6f2240a503c079659a7b911df5cba10bd2976c0c4aa74336dbcd0ed2"
   license "MIT"
 
-  depends_on macos: :ventura
-
   def install
     # --disable-sandbox: SPM's own build sandbox can't nest inside Homebrew's
     system "make", "build", "VERSION=#{version}",
