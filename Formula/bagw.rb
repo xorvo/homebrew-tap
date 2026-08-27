@@ -1,8 +1,8 @@
 class Bagw < Formula
   desc "Browser Agent Gateway — run local AI agents from browser extensions"
   homepage "https://github.com/xorvo/bagw"
-  url "https://github.com/xorvo/bagw/archive/refs/tags/v0.1.1.tar.gz"
-  sha256 "dbe9642889f00739b79dd0bf02cb0741b00845c230d4358b2497ce7fc9036c78"
+  url "https://github.com/xorvo/bagw/archive/refs/tags/v0.1.2.tar.gz"
+  sha256 "5dce08a5f36db74f7f9f0ef98fef2f9b4af7eb844895def6c321e10c1114a4f3"
   license "MIT"
 
   depends_on "node"
@@ -11,7 +11,7 @@ class Bagw < Formula
     libexec.install Dir["bin", "src", "package.json", "README.md", "LICENSE"]
     (bin/"bagw").write <<~SH
       #!/bin/bash
-      exec "#{Formula["node"].opt_bin}/node" "#{libexec}/bin/bagw.mjs" "$@"
+      exec "#{formula_opt_bin("node")}/node" "#{libexec}/bin/bagw.mjs" "$@"
     SH
     chmod 0755, bin/"bagw"
   end
