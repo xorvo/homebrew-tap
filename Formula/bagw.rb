@@ -1,8 +1,8 @@
 class Bagw < Formula
   desc "Browser Agent Gateway — run local AI agents from browser extensions"
   homepage "https://github.com/xorvo/bagw"
-  url "https://github.com/xorvo/bagw/archive/refs/tags/v0.3.0.tar.gz"
-  sha256 "63d9f939bf41eb4668745f0009ce68b60fc93ce644090e1c58fb1eab31880334"
+  url "https://github.com/xorvo/bagw/archive/refs/tags/v0.4.0.tar.gz"
+  sha256 "a5725cd4576144595837c35003063f97474b0fb9208a81ceab247072d008e2f6"
   license "MIT"
 
   depends_on "node"
